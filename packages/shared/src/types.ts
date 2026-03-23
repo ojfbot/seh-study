@@ -78,7 +78,7 @@ export interface CardState {
   nextReviewAt: string
 }
 
-export type StudyMode = 'flashcard' | 'quiz'
+export type StudyMode = 'flashcard' | 'quiz' | 'match'
 
 export interface StudySession {
   id: string
