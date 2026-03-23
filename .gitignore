@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.data/
+*.sqlite
+*.db
+.env
+.env.local
+*.tsbuildinfo
+storybook-static/
