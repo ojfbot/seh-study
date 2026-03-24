@@ -22,3 +22,10 @@ export function getCategorizedTerms(): CategorizedTerm[] {
 export function getTermsByCategory(category: Category): CategorizedTerm[] {
   return getCategorizedTerms().filter(t => t.category === category)
 }
+
+/** Look up a glossary term index by exact name. Throws if not found. */
+export function termIndexByName(name: string): number {
+  const idx = GLOSSARY.findIndex(t => t.term === name)
+  if (idx === -1) throw new Error(`Unknown glossary term: "${name}"`)
+  return idx
+}
