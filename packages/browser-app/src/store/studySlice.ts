@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { CardState, StudyMode, Category, LeitnerBox, StudySession } from '@ojfbot/seh-study-shared'
 import { initAllCards, promote, demote, GLOSSARY } from '@ojfbot/seh-study-shared'
+import { scenarioSrUpdate } from './scenarioActions.js'
 
 const STORAGE_KEY = 'seh-study:cards'
 const SESSION_KEY = 'seh-study:sessions'
@@ -136,6 +137,21 @@ const studySlice = createSlice({
         saveCards(state.cards)
       }
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(scenarioSrUpdate, (state, action) => {
+      const now = new Date()
+      const promoteSet = new Set(action.payload.termsPromoted)
+      const demoteSet = new Set(action.payload.termsDemoted)
+      for (let i = 0; i < state.cards.length; i++) {
+        if (promoteSet.has(state.cards[i].termIndex)) {
+          state.cards[i] = promote(state.cards[i], now)
+        } else if (demoteSet.has(state.cards[i].termIndex)) {
+          state.cards[i] = demote(state.cards[i], now)
+        }
+      }
+      saveCards(state.cards)
+    })
   },
 })
 

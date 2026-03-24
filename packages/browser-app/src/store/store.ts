@@ -3,12 +3,14 @@ import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux
 import threadsReducer from './threadsSlice.js'
 import chatReducer from './chatSlice.js'
 import studyReducer from './studySlice.js'
+import scenarioReducer from './scenarioSlice.js'
 
 export const store = configureStore({
   reducer: {
     threads: threadsReducer,
     chat: chatReducer,
     study: studyReducer,
+    scenario: scenarioReducer,
   },
 })
 
