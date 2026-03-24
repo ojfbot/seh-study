@@ -31,6 +31,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout frame-ui-components (file: dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: ojfbot/frame-ui-components
+          path: ../frame-ui-components
+
       - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v4
