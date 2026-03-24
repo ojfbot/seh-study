@@ -1,13 +1,14 @@
 // ── Tab types ────────────────────────────────────────────────────────────────
 
-export type TabSlug = 'study' | 'browse' | 'progress'
+export type TabSlug = 'study' | 'browse' | 'progress' | 'scenarios'
 
-export const TAB_SLUGS: TabSlug[] = ['study', 'browse', 'progress']
+export const TAB_SLUGS: TabSlug[] = ['study', 'browse', 'progress', 'scenarios']
 
 export const TAB_LABELS: Record<TabSlug, string> = {
   study: 'Study',
   browse: 'Browse',
   progress: 'Progress',
+  scenarios: 'Scenarios',
 }
 
 export type PanelTab = 'sessions' | 'chat'

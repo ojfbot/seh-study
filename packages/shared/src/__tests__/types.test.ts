@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { TAB_SLUGS, PANEL_TABS, CATEGORIES, CATEGORY_LABELS, BOX_INTERVALS_DAYS } from '../types.js'
 
 describe('shared types', () => {
-  it('has 3 tab slugs', () => {
-    expect(TAB_SLUGS).toHaveLength(3)
+  it('has 4 tab slugs', () => {
+    expect(TAB_SLUGS).toHaveLength(4)
   })
 
   it('has 2 panel tabs', () => {
