@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @ojfbot/seh-study-browser-app build",
+  "buildCommand": "pnpm --filter @ojfbot/seh-study-shared build && pnpm --filter @ojfbot/seh-study-browser-app build",
   "outputDirectory": "packages/browser-app/dist",
   "installCommand": "pnpm install",
   "headers": [
