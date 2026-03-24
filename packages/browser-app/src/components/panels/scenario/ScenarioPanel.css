@@ -1,0 +1,561 @@
+/* ── Scenario Panel — Mission Control Briefing aesthetic ──────────────── */
+
+/* ── Selector ─────────────────────────────────────────────────────────── */
+.seh-study-scenario-selector {
+  padding: 1rem;
+}
+
+.seh-study-scenario-selector h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.seh-study-scenario-selector-subtitle {
+  font-size: 0.875rem;
+  color: var(--cds-text-secondary, #525252);
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.seh-study-scenario-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--cds-layer-01, #f4f4f4);
+  border: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.seh-study-scenario-tile:hover {
+  border-color: var(--cds-border-interactive, #0f62fe);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.seh-study-scenario-tile--completed {
+  border-left: 4px solid var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-tile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.seh-study-scenario-tile h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.seh-study-scenario-tile-subtitle {
+  font-size: 0.8125rem;
+  color: var(--cds-text-secondary, #525252);
+  line-height: 1.4;
+}
+
+.seh-study-scenario-tile-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.seh-study-scenario-tile-score {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-difficulty {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.seh-study-scenario-difficulty--beginner {
+  background: var(--cds-notification-background-success, #defbe6);
+  color: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-difficulty--intermediate {
+  background: var(--cds-notification-background-info, #edf5ff);
+  color: var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-difficulty--advanced {
+  background: #f6e0ff;
+  color: #8a3ffc;
+}
+
+.seh-study-scenario-tile-time {
+  font-size: 0.75rem;
+  color: var(--cds-text-helper, #6f6f6f);
+}
+
+.seh-study-scenario-recommended {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--cds-notification-background-warning, #fdf6dd);
+  color: #b28600;
+}
+
+/* ── Runner ───────────────────────────────────────────────────────────── */
+.seh-study-scenario-runner {
+  padding: 1rem;
+  max-width: 780px;
+}
+
+.seh-study-scenario-runner-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+}
+
+.seh-study-scenario-runner-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.seh-study-scenario-node-count {
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary, #525252);
+}
+
+/* ── Mission Status Bar ───────────────────────────────────────────────── */
+.seh-study-scenario-mission-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--cds-layer-02, #e0e0e0);
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-gauge {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.seh-study-scenario-gauge-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cds-text-secondary, #525252);
+  display: flex;
+  justify-content: space-between;
+}
+
+.seh-study-scenario-gauge-track {
+  height: 6px;
+  background: var(--cds-layer-01, #f4f4f4);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.seh-study-scenario-gauge-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.seh-study-scenario-gauge--risk .seh-study-scenario-gauge-fill {
+  background: var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-gauge--schedule .seh-study-scenario-gauge-fill {
+  background: var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-gauge--budget .seh-study-scenario-gauge-fill {
+  background: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-phase-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 10px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background: var(--cds-layer-01, #f4f4f4);
+  color: var(--cds-text-secondary, #525252);
+  white-space: nowrap;
+}
+
+.seh-study-scenario-terms-count {
+  font-size: 0.6875rem;
+  color: var(--cds-text-helper, #6f6f6f);
+  white-space: nowrap;
+}
+
+/* ── Narrative Block ──────────────────────────────────────────────────── */
+.seh-study-scenario-narrative {
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-node-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.seh-study-scenario-narrative-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--cds-text-primary, #161616);
+  padding-left: 1rem;
+  border-left: 3px solid var(--cds-border-interactive, #0f62fe);
+}
+
+.seh-study-scenario-term-highlight {
+  font-weight: 600;
+  color: var(--cds-link-primary, #0f62fe);
+  cursor: help;
+  border-bottom: 1px dotted var(--cds-link-primary, #0f62fe);
+  position: relative;
+}
+
+.seh-study-scenario-term-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 260px;
+  max-width: 360px;
+  padding: 0.75rem 1rem;
+  background: var(--cds-layer-01, #f4f4f4);
+  border: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cds-text-primary, #161616);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.seh-study-scenario-term-highlight:hover .seh-study-scenario-term-tooltip {
+  display: block;
+}
+
+/* ── Decision Grid ────────────────────────────────────────────────────── */
+.seh-study-scenario-decisions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.seh-study-scenario-decisions-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cds-text-helper, #6f6f6f);
+  margin-bottom: 0.5rem;
+  grid-column: 1 / -1;
+}
+
+.seh-study-scenario-option {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--cds-layer-01, #f4f4f4);
+  border: 2px solid var(--cds-border-subtle-01, #e0e0e0);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.seh-study-scenario-option:hover:not(:disabled) {
+  border-color: var(--cds-border-interactive, #0f62fe);
+  box-shadow: 0 0 0 1px var(--cds-border-interactive, #0f62fe);
+  transform: translateY(-1px);
+}
+
+.seh-study-scenario-option:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.seh-study-scenario-option--selected {
+  border-color: var(--cds-interactive, #0f62fe);
+  background: var(--cds-layer-selected-01, #e0e0ff);
+}
+
+.seh-study-scenario-option-letter {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cds-layer-02, #e0e0e0);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--cds-text-primary, #161616);
+}
+
+.seh-study-scenario-option-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--cds-text-primary, #161616);
+}
+
+/* ── Feedback ─────────────────────────────────────────────────────────── */
+.seh-study-scenario-feedback {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  animation: seh-study-scenario-slide-up 0.25s ease-out;
+}
+
+@keyframes seh-study-scenario-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.seh-study-scenario-feedback--correct {
+  background: var(--cds-notification-background-success, #defbe6);
+  border-left: 4px solid var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-feedback--acceptable {
+  background: var(--cds-notification-background-info, #edf5ff);
+  border-left: 4px solid var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-feedback--incorrect {
+  background: var(--cds-notification-background-error, #fff1f1);
+  border-left: 4px solid var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-feedback-verdict {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.375rem;
+}
+
+.seh-study-scenario-feedback--correct .seh-study-scenario-feedback-verdict {
+  color: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-feedback--acceptable .seh-study-scenario-feedback-verdict {
+  color: var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-feedback--incorrect .seh-study-scenario-feedback-verdict {
+  color: var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-feedback-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--cds-text-primary, #161616);
+  margin-bottom: 0.75rem;
+}
+
+.seh-study-scenario-feedback-impact {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary, #525252);
+}
+
+.seh-study-scenario-feedback-impact span {
+  font-weight: 600;
+}
+
+.seh-study-scenario-feedback-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+/* ── Debrief ──────────────────────────────────────────────────────────── */
+.seh-study-scenario-debrief {
+  padding: 1rem;
+  max-width: 780px;
+}
+
+.seh-study-scenario-debrief-banner {
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-debrief-banner--success {
+  background: var(--cds-notification-background-success, #defbe6);
+  border: 1px solid var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-debrief-banner--failure {
+  background: var(--cds-notification-background-error, #fff1f1);
+  border: 1px solid var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-debrief-score {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.seh-study-scenario-debrief-banner--success .seh-study-scenario-debrief-score {
+  color: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-debrief-banner--failure .seh-study-scenario-debrief-score {
+  color: var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-debrief-narrative {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--cds-text-primary, #161616);
+}
+
+/* ── Decision timeline ────────────────────────────────────────────────── */
+.seh-study-scenario-timeline {
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-timeline h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.seh-study-scenario-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+}
+
+.seh-study-scenario-timeline-item:last-child {
+  border-bottom: none;
+}
+
+.seh-study-scenario-timeline-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.seh-study-scenario-timeline-dot--correct {
+  background: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-timeline-dot--acceptable {
+  background: var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-timeline-dot--incorrect {
+  background: var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-timeline-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cds-text-primary, #161616);
+}
+
+.seh-study-scenario-timeline-choice {
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary, #525252);
+}
+
+/* ── Terms report ─────────────────────────────────────────────────────── */
+.seh-study-scenario-terms-report {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-terms-col h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.seh-study-scenario-terms-col--promoted h4 {
+  color: var(--cds-support-success, #24a148);
+}
+
+.seh-study-scenario-terms-col--demoted h4 {
+  color: var(--cds-support-error, #da1e28);
+}
+
+.seh-study-scenario-terms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seh-study-scenario-terms-list li {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0;
+  color: var(--cds-text-primary, #161616);
+}
+
+/* ── Debrief gauges ───────────────────────────────────────────────────── */
+.seh-study-scenario-debrief-gauges {
+  margin-bottom: 1.5rem;
+}
+
+.seh-study-scenario-debrief-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ── Typewriter animation (narrative text) ────────────────────────────── */
+.seh-study-scenario-typewriter {
+  overflow: hidden;
+  animation: seh-study-scenario-reveal 0.6s ease-out forwards;
+}
+
+@keyframes seh-study-scenario-reveal {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 500px; }
+}

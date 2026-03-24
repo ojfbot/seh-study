@@ -1,81 +1,9 @@
-/* ── SEH Study Dashboard — shell-mode flex chain ─────────────────────────── */
-
-.seh-study-dashboard-wrapper {
-  flex: 1;
-  min-height: 0;
-  margin: 36px 72px;
-  display: flex;
-  flex-direction: column;
-  transition: margin-right 0.3s ease;
-}
-
-.seh-study-dashboard-wrapper.with-sidebar {
-  margin-right: calc(320px + 2rem);
-}
-
-.seh-study-dashboard-wrapper.shell-mode {
-  margin-top: 4.5rem;
-}
-
-.seh-study-dashboard-wrapper.shell-mode .cds--tabs {
-  flex-shrink: 0;
-  flex-direction: column;
-}
-
-.seh-study-dashboard-wrapper.shell-mode .cds--tabs--contained .cds--tab--list {
-  display: flex;
-  background-color: var(--cds-layer-accent-01, #393939);
-}
-
-.seh-study-dashboard-wrapper.shell-mode .cds--tabs--contained .cds--tabs__nav-item {
-  flex: 1 0 auto;
-}
-
-.seh-study-dashboard-wrapper.shell-mode .cds--tab-panels {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-}
-
-.seh-study-dashboard-wrapper.shell-mode .cds--tab-content {
-  max-height: none;
-  height: 100%;
-  overflow-y: auto;
-}
-
-/* ── Header ──────────────────────────────────────────────────────────────── */
-
-.seh-study-dashboard-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
+/* ── SEH Study — app-specific overrides ──────────────────────────────────── */
+/* Wrapper, header, sidebar-toggle, and shell-mode provided by
+   @ojfbot/frame-ui-components DashboardLayout. */
 
 .seh-study-header-actions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.sidebar-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border: none;
-  border-radius: 4px;
-  background: transparent;
-  cursor: pointer;
-  color: var(--cds-text-primary, #161616);
-}
-
-.sidebar-toggle-btn:hover {
-  background: var(--cds-layer-hover-01, #e8e8e8);
-}
-
-.page-header {
-  font-size: 1.25rem;
-  font-weight: 600;
 }
