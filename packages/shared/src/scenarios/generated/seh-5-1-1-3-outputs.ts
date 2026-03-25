@@ -1,0 +1,311 @@
+import type { ScenarioTemplate } from '../../scenario-types.js'
+import { termIndexByName as t } from '../../glossary.js'
+
+export const seh5113Outputs: ScenarioTemplate = {
+  meta: {
+    id: 'seh-5-1-1-3-outputs',
+    title: 'Deep Space Communication System Delivery',
+    subtitle: 'Manage end product delivery and documentation for a critical asteroid mission component',
+    difficulty: 'beginner',
+    categories: ['verification', 'project-mgmt', 'configuration'],
+    termIndices: [
+      t('End Product'),
+      t('Technical Data Management Process'),
+      t('Product Implementation Process'),
+      t('Verification (of a product)'),
+      t('Data Management'),
+      t('Heritage (or legacy)'),
+      t('Software'),
+      t('Model'),
+      t('Prototype'),
+      t('Test'),
+      t('Configuration Items (CI)'),
+      t('Technical Data Package'),
+      t('Process'),
+      t('Product'),
+      t('System Structure'),
+    ],
+    estimatedMinutes: 15,
+  },
+
+  startNodeId: 'node-1',
+
+  nodes: [
+    {
+      id: 'node-1',
+      phase: 'Phase D',
+      title: 'Contractor Delivery Preparation',
+      narrative: 'Your contractor has completed development of a deep space communication transponder for the asteroid sample return mission. As the risk manager overseeing verification activities, you need to determine what deliverables are required from the contractor. The verification team is ready to begin testing, but they need the proper end product and supporting documentation.',
+      termHighlights: [
+        t('End Product'),
+        t('Verification (of a product)'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Request delivery of the communication transponder hardware unit along with complete technical documentation including as-built drawings, test procedures, and operation manuals.',
+          termIndices: [
+            t('End Product'),
+            t('Technical Data Management Process'),
+            t('Data Management'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct. The end product in its appropriate form for this life cycle phase (flight hardware) must be delivered with complete technical documentation to support both verification activities and long-term data management.',
+          nextNodeId: null,
+          scoreImpact: { risk: -2, schedule: 1, budget: 0 },
+        },
+        {
+          id: 'b',
+          text: 'Accept just the hardware unit since the verification team only needs to test functionality.',
+          termIndices: [
+            t('End Product'),
+            t('Technical Data Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Acceptable but incomplete. While the end product hardware is essential, verification requires supporting documentation. Without proper technical data management, you risk verification delays and missing critical configuration information.',
+          nextNodeId: null,
+          scoreImpact: { risk: 3, schedule: -1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Request only the design documentation and CAD models since physical testing can wait until later phases.',
+          termIndices: [
+            t('Model'),
+            t('Verification (of a product)'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Incorrect. Verification in Phase D requires the actual end product hardware, not just models. Delaying physical verification to later phases violates the systems engineering process and introduces significant schedule and technical risk.',
+          nextNodeId: null,
+          scoreImpact: { risk: 5, schedule: -3, budget: 1 },
+        },
+      ],
+      defaultNextNodeId: 'node-2',
+    },
+
+    {
+      id: 'node-2',
+      phase: 'Phase D',
+      title: 'Software Component Integration',
+      narrative: 'The transponder includes embedded software that interfaces with the spacecraft flight computer. Your verification team discovers the contractor used heritage flight software components from a previous Mars mission. You need to determine what software deliverables are required for verification.',
+      termHighlights: [
+        t('Software'),
+        t('Heritage (or legacy)'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Require delivery of all software components including source code, heritage documentation, configuration baselines, and integration test results.',
+          termIndices: [
+            t('Software'),
+            t('Heritage (or legacy)'),
+            t('Configuration Items (CI)'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct. Software end products require complete deliverables including source code, heritage pedigree, and configuration documentation. This ensures verification can proceed and supports proper technical data management throughout the mission lifecycle.',
+          nextNodeId: null,
+          scoreImpact: { risk: -3, schedule: 1, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Accept only the compiled executable software since the heritage components have already been verified on previous missions.',
+          termIndices: [
+            t('Software'),
+            t('Heritage (or legacy)'),
+            t('Verification (of a product)'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Acceptable but risky. Heritage components still require verification in the new system context. Without source code and configuration documentation, debugging integration issues becomes extremely difficult and verification may be incomplete.',
+          nextNodeId: null,
+          scoreImpact: { risk: 4, schedule: 0, budget: -1 },
+        },
+        {
+          id: 'c',
+          text: 'Trust the heritage software and focus verification only on the new hardware components.',
+          termIndices: [
+            t('Heritage (or legacy)'),
+            t('Software'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Incorrect. All software components, including heritage items, must be verified in their new system context. Software integration issues are a major source of mission risk and cannot be overlooked in the verification process.',
+          nextNodeId: null,
+          scoreImpact: { risk: 6, schedule: -2, budget: 0 },
+        },
+      ],
+      defaultNextNodeId: 'node-3',
+    },
+
+    {
+      id: 'node-3',
+      phase: 'Phase D',
+      title: 'Prototype Test Article Delivery',
+      narrative: 'Before final verification testing, the contractor offers to deliver a prototype transponder that was used for design validation testing. This prototype has slightly different components but demonstrates the same form, fit, and function. Your verification team could use it for preliminary testing while waiting for the flight unit.',
+      termHighlights: [
+        t('Prototype'),
+        t('Test'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Accept the prototype as an additional end product with clear documentation of its differences from the flight unit, but continue requiring the flight hardware for formal verification.',
+          termIndices: [
+            t('Prototype'),
+            t('End Product'),
+            t('Technical Data Package'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct. Prototypes can serve as valuable end products for preliminary verification activities when properly documented. However, formal verification must still use the actual flight hardware to ensure complete confidence in the delivered system.',
+          nextNodeId: null,
+          scoreImpact: { risk: -1, schedule: 2, budget: 0 },
+        },
+        {
+          id: 'b',
+          text: 'Reject the prototype and wait only for the flight hardware to avoid confusion in the verification process.',
+          termIndices: [
+            t('Prototype'),
+            t('Verification (of a product)'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Acceptable but inefficient. While focusing only on flight hardware ensures verification clarity, rejecting useful prototype test articles wastes opportunities for early risk reduction and schedule acceleration in the verification process.',
+          nextNodeId: null,
+          scoreImpact: { risk: 1, schedule: -1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Accept the prototype as a substitute for flight hardware verification since it demonstrates the same functionality.',
+          termIndices: [
+            t('Prototype'),
+            t('End Product'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Incorrect. Prototypes cannot substitute for flight hardware in formal verification. The end product delivered for verification must be the actual article that will fly, not a prototype with different components.',
+          nextNodeId: null,
+          scoreImpact: { risk: 7, schedule: 1, budget: -1 },
+        },
+      ],
+      defaultNextNodeId: 'node-4',
+    },
+
+    {
+      id: 'node-4',
+      phase: 'Phase D',
+      title: 'Technical Data Package Review',
+      narrative: 'Your technical data management team has received all contractor deliverables and is preparing the final technical data package for verification. They notice some documentation gaps including missing maintenance procedures and incomplete as-built drawings. The verification schedule is tight, and the contractor claims these items can be delivered after verification is complete.',
+      termHighlights: [
+        t('Technical Data Management Process'),
+        t('Technical Data Package'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Require complete technical documentation before beginning verification, including all maintenance manuals and as-built drawings as specified in the contract.',
+          termIndices: [
+            t('Technical Data Management Process'),
+            t('Technical Data Package'),
+            t('Process'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct. Complete technical documentation is required for proper verification and ongoing technical data management. Accepting incomplete deliverables violates the systematic process and creates risks for mission operations and maintenance.',
+          nextNodeId: null,
+          scoreImpact: { risk: -2, schedule: 0, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Proceed with verification using available documentation and accept the missing items as a post-verification delivery.',
+          termIndices: [
+            t('Verification (of a product)'),
+            t('Technical Data Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Acceptable but creates risk. While verification can proceed with core documentation, missing maintenance procedures and as-built drawings may be needed during verification activities and will definitely be required for mission operations.',
+          nextNodeId: null,
+          scoreImpact: { risk: 3, schedule: 1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Accept the documentation gaps as minor issues since the hardware is complete and functional.',
+          termIndices: [
+            t('End Product'),
+            t('Technical Data Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Incorrect. Technical documentation is not optional for end product delivery. Missing maintenance procedures and as-built drawings represent significant gaps that will impact verification completeness and long-term mission success.',
+          nextNodeId: null,
+          scoreImpact: { risk: 5, schedule: 1, budget: -2 },
+        },
+      ],
+      defaultNextNodeId: 'node-5',
+    },
+
+    {
+      id: 'node-5',
+      phase: 'Phase D',
+      title: 'Final Delivery Assessment',
+      narrative: 'After resolving documentation issues, you are conducting a final assessment of all contractor deliverables before formally accepting them for verification. The end product hardware, software, and documentation packages are complete, but you need to ensure they properly support both the verification process and the overall system structure requirements.',
+      termHighlights: [
+        t('System Structure'),
+        t('Product'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Verify that all delivered products align with the defined system structure and will properly interface with other system components during verification and integration.',
+          termIndices: [
+            t('System Structure'),
+            t('Product'),
+            t('End Product'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct. Final delivery assessment must confirm that end products fit properly within the overall system structure. This ensures successful verification and integration with other system components throughout the remaining mission phases.',
+          nextNodeId: null,
+          scoreImpact: { risk: -3, schedule: 1, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Focus the assessment only on the individual component functionality since system integration will be addressed in later verification phases.',
+          termIndices: [
+            t('End Product'),
+            t('System Structure'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Acceptable but incomplete. While component functionality is important, ignoring system structure compatibility during delivery acceptance can lead to integration problems during verification that are expensive and time-consuming to resolve.',
+          nextNodeId: null,
+          scoreImpact: { risk: 2, schedule: 0, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Accept all deliverables since the contractor has met their contractual obligations and verification will catch any remaining issues.',
+          termIndices: [
+            t('Product'),
+            t('Verification (of a product)'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Incorrect. Blind acceptance of contractor deliverables without proper assessment violates systematic delivery processes. Verification is not intended to catch delivery deficiencies but to confirm that properly delivered products meet requirements.',
+          nextNodeId: null,
+          scoreImpact: { risk: 4, schedule: -1, budget: -1 },
+        },
+      ],
+      defaultNextNodeId: null,
+    },
+  ],
+
+  debriefTemplate: {
+    successNarrative: 'You successfully managed the end product delivery process, ensuring complete hardware, software, and documentation packages were properly delivered for verification. Your systematic approach to technical data management supported both immediate verification needs and long-term mission requirements.',
+    failureNarrative: 'Your delivery management had significant gaps that compromised verification readiness. Missing documentation, incomplete software packages, or inadequate system structure consideration created risks that will impact verification success and mission operations.',
+    successThreshold: 60,
+  },
+}
