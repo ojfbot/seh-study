@@ -4,6 +4,8 @@ import threadsReducer from './threadsSlice.js'
 import chatReducer from './chatSlice.js'
 import studyReducer from './studySlice.js'
 import scenarioReducer from './scenarioSlice.js'
+import eventsReducer from './eventsSlice.js'
+import { eventMiddleware } from './eventMiddleware.js'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +13,10 @@ export const store = configureStore({
     chat: chatReducer,
     study: studyReducer,
     scenario: scenarioReducer,
+    events: eventsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(eventMiddleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
