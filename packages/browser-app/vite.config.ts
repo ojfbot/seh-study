@@ -27,7 +27,16 @@ export default defineConfig({
       },
     }),
   ],
-  server: { port: 3030 },
+  // Treat frame-ui-components as source (file: linked, not pre-built)
+  optimizeDeps: {
+    exclude: ['@ojfbot/frame-ui-components'],
+  },
+  server: {
+    port: 3030,
+    fs: {
+      allow: ['../../..'],
+    },
+  },
   preview: { port: 3030 },
   build: {
     target: 'esnext',
