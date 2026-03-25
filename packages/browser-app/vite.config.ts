@@ -30,6 +30,12 @@ export default defineConfig({
   // Treat frame-ui-components as source (file: linked, not pre-built)
   optimizeDeps: {
     exclude: ['@ojfbot/frame-ui-components'],
+    include: [
+      '@ojfbot/frame-ui-components > react-markdown',
+      '@ojfbot/frame-ui-components > hast-util-to-jsx-runtime',
+      '@ojfbot/frame-ui-components > style-to-js',
+      '@ojfbot/frame-ui-components > style-to-object',
+    ],
   },
   server: {
     port: 3030,
