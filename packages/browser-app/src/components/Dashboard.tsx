@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ErrorBoundary } from '@ojfbot/frame-ui-components'
 import { store } from '../store/store.js'
 import DashboardContent from './DashboardContent.js'
 
@@ -13,7 +14,9 @@ export default function Dashboard({ shellMode = false }: DashboardProps) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <DashboardContent shellMode={shellMode} />
+        <ErrorBoundary appName="seh-study" boundaryName="dashboard">
+          <DashboardContent shellMode={shellMode} />
+        </ErrorBoundary>
       </QueryClientProvider>
     </Provider>
   )

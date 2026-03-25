@@ -12,7 +12,8 @@ import StudyPanel from './panels/StudyPanel.js'
 import BrowsePanel from './panels/BrowsePanel.js'
 import ProgressPanel from './panels/ProgressPanel.js'
 import ScenarioPanel from './panels/scenario/ScenarioPanel.js'
-import SehStudySidePanel from './SehStudySidePanel.js'
+import ThreadSidebarConnected from './ThreadSidebarConnected.js'
+import CondensedChat from './CondensedChat.js'
 import './Dashboard.css'
 
 const PANEL_MAP: Record<TabSlug, React.ComponentType> = {
@@ -32,37 +33,44 @@ export default function DashboardContent({ shellMode }: DashboardContentProps) {
   const sidebarExpanded = useAppSelector(s => s.threads.sidebarExpanded)
 
   return (
-    <DashboardLayout shellMode={shellMode} sidebarExpanded={sidebarExpanded}>
-      <DashboardLayout.Header>
-        <Heading className="page-header">SEH Study Dashboard</Heading>
-        <div className="seh-study-header-actions">
-          <Tooltip align="bottom-right" label={sidebarExpanded ? 'Close panel' : 'Sessions & Chat'}>
-            <button className="sidebar-toggle-btn" onClick={() => dispatch(toggleSidebar())} aria-label="Toggle sessions / chat panel">
-              {sidebarExpanded ? <Close size={20} /> : <Menu size={20} />}
-            </button>
-          </Tooltip>
-        </div>
-      </DashboardLayout.Header>
+    <>
+      <ThreadSidebarConnected
+        isExpanded={sidebarExpanded}
+        onToggle={() => dispatch(toggleSidebar())}
+      />
 
-      <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: idx }) => setSelectedIndex(idx)}>
-        <TabList aria-label="SEH Study tabs" contained>
-          {TAB_SLUGS.map(slug => (
-            <Tab key={slug}>{TAB_LABELS[slug]}</Tab>
-          ))}
-        </TabList>
-        <TabPanels>
-          {TAB_SLUGS.map(slug => {
-            const PanelComponent = PANEL_MAP[slug]
-            return (
-              <TabPanel key={slug}>
-                <PanelComponent />
-              </TabPanel>
-            )
-          })}
-        </TabPanels>
-      </Tabs>
+      <DashboardLayout shellMode={shellMode} sidebarExpanded={sidebarExpanded}>
+        <DashboardLayout.Header>
+          <Heading className="page-header">SEH Study Dashboard</Heading>
+          <div className="seh-study-header-actions">
+            <Tooltip align="bottom-right" label={sidebarExpanded ? 'Close threads' : 'Show threads'}>
+              <button className="sidebar-toggle-btn" onClick={() => dispatch(toggleSidebar())} aria-label="Toggle thread sidebar">
+                {sidebarExpanded ? <Close size={20} /> : <Menu size={20} />}
+              </button>
+            </Tooltip>
+          </div>
+        </DashboardLayout.Header>
 
-      <SehStudySidePanel />
-    </DashboardLayout>
+        <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: idx }) => setSelectedIndex(idx)}>
+          <TabList aria-label="SEH Study tabs" contained>
+            {TAB_SLUGS.map(slug => (
+              <Tab key={slug}>{TAB_LABELS[slug]}</Tab>
+            ))}
+          </TabList>
+          <TabPanels>
+            {TAB_SLUGS.map(slug => {
+              const PanelComponent = PANEL_MAP[slug]
+              return (
+                <TabPanel key={slug}>
+                  <PanelComponent />
+                </TabPanel>
+              )
+            })}
+          </TabPanels>
+        </Tabs>
+      </DashboardLayout>
+
+      <CondensedChat sidebarExpanded={sidebarExpanded} />
+    </>
   )
 }
