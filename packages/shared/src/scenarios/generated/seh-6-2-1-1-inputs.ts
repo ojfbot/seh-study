@@ -1,0 +1,313 @@
+import type { ScenarioTemplate } from '../../scenario-types.js'
+import { termIndexByName as t } from '../../glossary.js'
+
+export const seh6211Inputs: ScenarioTemplate = {
+  meta: {
+    id: 'seh-6-2-1-1-inputs',
+    title: 'Managing Requirements Input Streams',
+    subtitle: 'Coordinate multiple sources feeding the requirements management pipeline',
+    difficulty: 'advanced',
+    categories: ['requirements', 'project-mgmt'],
+    termIndices: [
+      t('Requirements Management Process'),
+      t('Stakeholder Expectations Definition Process'),
+      t('Technical Requirements Definition Process'),
+      t('Technical Assessment Process'),
+      t('Product Verification Process'),
+      t('Product Validation Process'),
+      t('Technical Performance Measures'),
+      t('Stakeholder Expectations'),
+      t('Technical Requirements'),
+      t('Variance'),
+      t('Evaluation'),
+      t('Process'),
+      t('Bidirectional Traceability'),
+    ],
+    estimatedMinutes: 18,
+  },
+
+  startNodeId: 'node-1',
+
+  nodes: [
+    {
+      id: 'node-1',
+      phase: 'Phase B',
+      title: 'Initial Requirements Baseline',
+      narrative: 'As Integration & Test Lead for the deep space telescope, you are establishing the requirements management framework. The Stakeholder Expectations Definition Process has delivered stakeholder expectations, and the Technical Requirements Definition Process is generating technical requirements. You need to establish how these fundamental inputs will feed into your Requirements Management Process.',
+      termHighlights: [
+        t('Requirements Management Process'),
+        t('Stakeholder Expectations Definition Process'),
+        t('Technical Requirements Definition Process'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Establish a formal intake process that captures requirements from both processes, maintains bidirectional traceability, and ensures all inputs are properly baselined before entering the requirements database.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Bidirectional Traceability'),
+            t('Process'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct approach. The Requirements Management Process must systematically handle inputs from stakeholder expectations and technical requirements definition processes while maintaining traceability. This establishes the foundation for managing requirement changes throughout the project lifecycle.',
+          nextNodeId: null,
+          scoreImpact: { risk: 2, schedule: 0, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Focus primarily on technical requirements since they are more concrete, and treat stakeholder expectations as secondary inputs to be addressed later.',
+          termIndices: [
+            t('Technical Requirements'),
+            t('Stakeholder Expectations'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Risky prioritization. While technical requirements are important, stakeholder expectations are fundamental inputs that drive requirement validity. Treating them as secondary can lead to requirements that are technically sound but fail to meet stakeholder needs.',
+          nextNodeId: null,
+          scoreImpact: { risk: -1, schedule: 1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Wait until both processes are completely finished before establishing the requirements management framework to avoid dealing with changing inputs.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Poor approach. Requirements management must begin early and handle iterative inputs from ongoing processes. Waiting delays critical baseline establishment and prevents early identification of conflicts between stakeholder and technical requirements.',
+          nextNodeId: null,
+          scoreImpact: { risk: -3, schedule: -2, budget: -1 },
+        },
+      ],
+      defaultNextNodeId: 'node-2',
+    },
+
+    {
+      id: 'node-2',
+      phase: 'Phase C',
+      title: 'Change Request Surge',
+      narrative: 'Three months into detailed design, your Requirements Management Process is receiving multiple requirement change requests from different sources. Some come from design trade studies, others from updated stakeholder needs, and several from early prototyping results. The volume is overwhelming your current change control process.',
+      termHighlights: [
+        t('Requirements Management Process'),
+        t('Technical Assessment Process'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Implement a structured change request evaluation process that categorizes requests by source, assesses impact through the Technical Assessment Process, and maintains requirement traceability throughout all changes.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Technical Assessment Process'),
+            t('Evaluation'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Excellent approach. The Requirements Management Process must be prepared to handle change requests throughout the project lifecycle. Structured evaluation using Technical Assessment Process ensures changes are properly analyzed for technical and programmatic impact.',
+          nextNodeId: null,
+          scoreImpact: { risk: 3, schedule: 0, budget: 2 },
+        },
+        {
+          id: 'b',
+          text: 'Temporarily freeze all requirement changes until the current design phase is complete to avoid disruption to the design teams.',
+          termIndices: [
+            t('Requirements Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Potentially problematic. While change control is important, completely freezing requirements can prevent necessary corrections identified through ongoing technical work. Some changes may be critical for mission success or safety.',
+          nextNodeId: null,
+          scoreImpact: { risk: -1, schedule: 1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Process all change requests immediately as they arrive to keep stakeholders satisfied and maintain design momentum.',
+          termIndices: [
+            t('Requirements Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Dangerous approach. Processing changes without proper evaluation leads to requirement instability, design thrash, and potential conflicts. The Requirements Management Process requires disciplined change control to maintain system integrity.',
+          nextNodeId: null,
+          scoreImpact: { risk: -4, schedule: -2, budget: -3 },
+        },
+      ],
+      defaultNextNodeId: 'node-3',
+    },
+
+    {
+      id: 'node-3',
+      phase: 'Phase C',
+      title: 'TPM Warning Signals',
+      narrative: 'Your Technical Assessment Process has delivered TPM evaluation results showing several critical technical parameters are trending toward red. The telescope pointing accuracy is 20% worse than required, and the detector cooling system is consuming 15% more power than allocated. These variances may trigger requirement changes.',
+      termHighlights: [
+        t('Technical Performance Measures'),
+        t('Technical Assessment Process'),
+        t('Variance'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Use the TPM results as inputs to the Requirements Management Process to evaluate whether requirements need adjustment, alternative technical solutions are needed, or design margins should be reallocated.',
+          termIndices: [
+            t('Technical Performance Measures'),
+            t('Requirements Management Process'),
+            t('Technical Assessment Process'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Correct integration of processes. TPM evaluation results from the Technical Assessment Process are key inputs to requirements management. Early warning of design adequacy allows proactive requirement evaluation and corrective action before problems become critical.',
+          nextNodeId: null,
+          scoreImpact: { risk: 2, schedule: 0, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Direct the design teams to meet the existing requirements regardless of TPM trends, since changing requirements this late would be too disruptive.',
+          termIndices: [
+            t('Technical Performance Measures'),
+            t('Variance'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Risky approach. Ignoring TPM variance trends can lead to larger problems later. While requirement stability is important, the Requirements Management Process should consider TPM inputs to prevent requirement-reality mismatches.',
+          nextNodeId: null,
+          scoreImpact: { risk: -2, schedule: 0, budget: -1 },
+        },
+        {
+          id: 'c',
+          text: 'Immediately relax the requirements to match current design performance to eliminate the TPM variances.',
+          termIndices: [
+            t('Technical Performance Measures'),
+            t('Variance'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Poor approach. Simply relaxing requirements to match poor performance without proper analysis undermines mission objectives. The Requirements Management Process should evaluate the impact of any requirement changes on stakeholder needs and mission success.',
+          nextNodeId: null,
+          scoreImpact: { risk: -3, schedule: 1, budget: 0 },
+        },
+      ],
+      defaultNextNodeId: 'node-4',
+    },
+
+    {
+      id: 'node-4',
+      phase: 'Phase D',
+      title: 'Verification Results Integration',
+      narrative: 'The Product Verification Process has delivered test results for several telescope subsystems. Some tests passed with margin, others barely met requirements, and two tests revealed requirement interpretation ambiguities. The Product Validation Process is also beginning to generate validation results. You need to integrate these results into your requirements database.',
+      termHighlights: [
+        t('Product Verification Process'),
+        t('Product Validation Process'),
+        t('Requirements Management Process'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Map all verification and validation results into the requirements database to establish complete traceability, identify requirement gaps or ambiguities, and document the verification/validation status of each requirement.',
+          termIndices: [
+            t('Product Verification Process'),
+            t('Product Validation Process'),
+            t('Requirements Management Process'),
+            t('Bidirectional Traceability'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Excellent practice. The Requirements Management Process must integrate verification and validation results to demonstrate requirement satisfaction and identify issues. This mapping provides the traceability needed to prove all requirements have been addressed.',
+          nextNodeId: null,
+          scoreImpact: { risk: 3, schedule: 0, budget: 1 },
+        },
+        {
+          id: 'b',
+          text: 'Focus only on failed tests since passed tests prove the requirements are satisfied and do not need further tracking.',
+          termIndices: [
+            t('Product Verification Process'),
+            t('Product Validation Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Incomplete approach. While failed tests need attention, the Requirements Management Process should track all verification and validation results to maintain complete traceability and document requirement satisfaction status for the entire system.',
+          nextNodeId: null,
+          scoreImpact: { risk: -1, schedule: 1, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Keep verification and validation results separate from requirements management since they belong to different processes and should not be mixed.',
+          termIndices: [
+            t('Product Verification Process'),
+            t('Product Validation Process'),
+            t('Requirements Management Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Fundamental misunderstanding. Verification and validation results are essential inputs to the Requirements Management Process. Keeping them separate prevents the traceability needed to demonstrate requirement satisfaction and system readiness.',
+          nextNodeId: null,
+          scoreImpact: { risk: -4, schedule: -1, budget: -2 },
+        },
+      ],
+      defaultNextNodeId: 'node-5',
+    },
+
+    {
+      id: 'node-5',
+      phase: 'Phase D',
+      title: 'Input Integration Challenge',
+      narrative: 'As the project approaches critical design review, your Requirements Management Process is receiving inputs from all sources simultaneously: new stakeholder concerns about operational complexity, technical requirement updates from ongoing analysis, TPM results showing mixed performance trends, change requests from three different review boards, and a flood of verification results. You need to prioritize and integrate these inputs effectively.',
+      termHighlights: [
+        t('Requirements Management Process'),
+        t('Process'),
+        t('Evaluation'),
+      ],
+      decisions: [
+        {
+          id: 'a',
+          text: 'Establish input prioritization criteria based on mission impact, implement systematic evaluation processes for each input type, and ensure all inputs are properly integrated while maintaining requirement traceability and configuration control.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Evaluation'),
+            t('Process'),
+            t('Bidirectional Traceability'),
+          ],
+          isCorrect: true,
+          isAcceptable: true,
+          feedback: 'Comprehensive approach. Managing multiple input streams requires systematic prioritization and evaluation processes. This ensures the Requirements Management Process can handle the complexity while maintaining the integrity and traceability of the requirements baseline.',
+          nextNodeId: null,
+          scoreImpact: { risk: 4, schedule: -1, budget: 2 },
+        },
+        {
+          id: 'b',
+          text: 'Process inputs in the order they are received to ensure fairness and avoid accusations of bias toward any particular stakeholder or process.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: true,
+          feedback: 'Inefficient approach. First-come-first-served processing ignores the relative importance and urgency of different inputs. Some changes may be more critical for mission success or safety and should be prioritized accordingly.',
+          nextNodeId: null,
+          scoreImpact: { risk: -1, schedule: -2, budget: 0 },
+        },
+        {
+          id: 'c',
+          text: 'Delegate input processing to different team members based on their expertise areas to speed up the overall process.',
+          termIndices: [
+            t('Requirements Management Process'),
+            t('Process'),
+          ],
+          isCorrect: false,
+          isAcceptable: false,
+          feedback: 'Dangerous fragmentation. While expertise is valuable, distributed processing without central coordination can lead to inconsistent decisions, conflicting changes, and loss of requirements integrity. The Requirements Management Process needs centralized oversight.',
+          nextNodeId: null,
+          scoreImpact: { risk: -3, schedule: 0, budget: -1 },
+        },
+      ],
+      defaultNextNodeId: null,
+    },
+  ],
+
+  debriefTemplate: {
+    successNarrative: 'You successfully established a robust Requirements Management Process that systematically handles all fundamental inputs while maintaining traceability and configuration control. Your structured approach to integrating stakeholder expectations, technical requirements, change requests, TPM results, and verification/validation data ensures requirements remain aligned with mission needs throughout the project lifecycle.',
+    failureNarrative: 'Your requirements management approach failed to properly integrate the multiple input streams, leading to requirement instability and potential mission risks. Without systematic processes to handle stakeholder expectations, technical changes, and verification results, the requirements baseline lost integrity and traceability.',
+    successThreshold: 60,
+  },
+}

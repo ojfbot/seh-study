@@ -212,10 +212,11 @@ export function sectionToSlug(sectionNumber: string, title: string): string {
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
     .slice(0, 50)
+    .replace(/-+$/, '')
   return `seh-${sectionNumber.toLowerCase().replace(/\./g, '-')}-${base}`
 }
 
 /** Convert slug to camelCase export name. */
 export function slugToExportName(slug: string): string {
-  return slug.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())
+  return slug.replace(/-+$/, '').replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())
 }
