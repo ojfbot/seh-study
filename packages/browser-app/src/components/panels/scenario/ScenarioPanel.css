@@ -118,6 +118,24 @@
   color: #b28600;
 }
 
+.seh-study-scenario-section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.seh-study-scenario-tile--recommended {
+  border-left: 4px solid var(--cds-support-info, #0043ce);
+}
+
+.seh-study-scenario-tile-reasons {
+  font-size: 0.75rem;
+  color: var(--cds-support-info, #0043ce);
+  font-weight: 500;
+}
+
 /* ── Runner ───────────────────────────────────────────────────────────── */
 .seh-study-scenario-runner {
   padding: 1rem;
