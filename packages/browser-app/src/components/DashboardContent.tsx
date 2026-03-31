@@ -1,9 +1,6 @@
 import { useState } from 'react'
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@carbon/react'
-import { Heading } from '@carbon/react'
-import { Menu, Close } from '@carbon/icons-react'
-import { Tooltip } from '@carbon/react'
-import { DashboardLayout } from '@ojfbot/frame-ui-components'
+import { Tabs, TabList, Tab, TabPanels, TabPanel, Heading } from '@carbon/react'
+import { DashboardLayout, SidebarToggle } from '@ojfbot/frame-ui-components'
 import '@ojfbot/frame-ui-components/styles/dashboard-layout'
 import { TAB_SLUGS, TAB_LABELS, type TabSlug } from '@ojfbot/seh-study-shared'
 import { useAppSelector, useAppDispatch } from '../store/store.js'
@@ -42,13 +39,7 @@ export default function DashboardContent({ shellMode }: DashboardContentProps) {
       <DashboardLayout shellMode={shellMode} sidebarExpanded={sidebarExpanded}>
         <DashboardLayout.Header>
           <Heading className="page-header">SEH Study Dashboard</Heading>
-          <div className="seh-study-header-actions">
-            <Tooltip align="bottom-right" label={sidebarExpanded ? 'Close threads' : 'Show threads'}>
-              <button className="sidebar-toggle-btn" onClick={() => dispatch(toggleSidebar())} aria-label="Toggle thread sidebar">
-                {sidebarExpanded ? <Close size={20} /> : <Menu size={20} />}
-              </button>
-            </Tooltip>
-          </div>
+          <SidebarToggle isExpanded={sidebarExpanded} onToggle={() => dispatch(toggleSidebar())} />
         </DashboardLayout.Header>
 
         <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: idx }) => setSelectedIndex(idx)}>
