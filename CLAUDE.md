@@ -48,3 +48,10 @@ Four packages in pnpm workspaces:
 - LangGraph nodes: `async function myNode(state): Promise<Partial<State>>` — return partial state, never throw.
 - CSS class names prefixed with `seh-study-` to avoid shell collisions.
 - Module Federation: `cssInjectedByJs` BEFORE `federation` in vite.config.ts.
+
+## Deployment
+
+**NEVER deploy directly to production** via CLI (`vercel deploy --prod`, `vercel promote`, etc.).
+All production deployments go through the GitHub PR → CI → merge → automated deploy pipeline.
+The only exception is `workflow_dispatch` for manual CI triggers.
+Local Vercel CLI usage is restricted to preview deploys only.
