@@ -55,8 +55,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Checkout frame-ui-components
-        run: git clone --depth 1 https://github.com/ojfbot/frame-ui-components.git ../frame-ui-components
 
       - uses: pnpm/action-setup@v4
 
