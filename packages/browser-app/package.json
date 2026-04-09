@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@ojfbot/seh-study-shared": "workspace:*",
-    "@ojfbot/frame-ui-components": "file:../../../frame-ui-components",
+    "@ojfbot/frame-ui-components": "^1.0.1",
     "@carbon/react": "^1.71.0",
     "@carbon/icons-react": "^11.0.0",
     "@carbon/styles": "^1.71.0",
