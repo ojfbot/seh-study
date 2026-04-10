@@ -14,7 +14,7 @@ SEH Study trains engineers to make real systems engineering decisions under unce
 - **10 topic categories** — lifecycle, requirements, design, reviews, risk, verification, project management, configuration, human factors, technology
 - **4-tab dashboard** — Study (flashcards), Browse (searchable glossary), Progress (mastery heatmap), Scenarios (adaptive mission runner)
 - **Structured event stream** — every interaction emits typed events (`card-review`, `scenario-decision`, `scenario-complete`, `session-start/end`) feeding the performance model
-- **Module Federation remote** — renders inside the Frame OS shell
+- **Module Federation remote** — renders inside the Frame OS shell via [FrameBus](https://github.com/ojfbot/shell) (ADR-0013)
 
 ## Architecture
 
@@ -123,4 +123,4 @@ Part of [Frame OS](https://github.com/ojfbot/shell) — an AI-native application
 | [daily-logger](https://github.com/ojfbot/daily-logger) | Automated daily dev blog pipeline |
 | [purefoy](https://github.com/ojfbot/purefoy) | Roger Deakins cinematography knowledge base |
 | [MrPlug](https://github.com/ojfbot/MrPlug) | Chrome extension for AI UI feedback |
-| [frame-ui-components](https://github.com/ojfbot/frame-ui-components) | Shared component library (Carbon DS) |
+| [frame-ui-components](https://www.npmjs.com/package/@ojfbot/frame-ui-components) | Shared component library (Carbon DS) — published to npm as `@ojfbot/frame-ui-components` |
