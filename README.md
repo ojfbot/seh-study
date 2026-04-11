@@ -13,6 +13,7 @@ SEH Study trains engineers to make real systems engineering decisions under unce
 - **238 glossary terms** from the NASA Systems Engineering Handbook with Leitner 5-box spaced repetition
 - **10 topic categories** — lifecycle, requirements, design, reviews, risk, verification, project management, configuration, human factors, technology
 - **4-tab dashboard** — Study (flashcards), Browse (searchable glossary), Progress (mastery heatmap), Scenarios (adaptive mission runner)
+- **Bead projection** — GET /api/beads endpoint exposes study activity as beads per the fleet-wide ADR-0016 contract
 - **Structured event stream** — every interaction emits typed events (`card-review`, `scenario-decision`, `scenario-complete`, `session-start/end`) feeding the performance model
 - **Module Federation remote** — renders inside the Frame OS shell via [FrameBus](https://github.com/ojfbot/shell) (ADR-0013)
 
@@ -21,11 +22,12 @@ SEH Study trains engineers to make real systems engineering decisions under unce
 ```
 packages/
   shared/          Glossary data, types, Leitner SR engine, scenario engine,
-                   performance model (EWMA), adaptive recommender, study events
+                   performance model (EWMA), adaptive recommender, study events,
+                   bead hooks + skills + session coordination
   agent-graph/     LangGraph state machine — quiz-generator + explainer nodes
-  api/             Express server (:3031) — GET /health, GET /api/tools, domain routes
+  api/             Express server (:3031) — GET /health, GET /api/tools, GET /api/beads (ADR-0016), domain routes
   browser-app/     React + Carbon DS (:3030) — 4-tab dashboard, Module Federation remote
-```
+  browser-automation/  Visual regression testing (Playwright screenshots)
 
 ### Adaptive Learning Pipeline
 
@@ -87,7 +89,7 @@ pnpm dev:all    # API on :3031, frontend on :3030
 
 ## Roadmap
 
-- [x] Monorepo scaffold (4 packages)
+- [x] Monorepo scaffold (5 packages)
 - [x] Module Federation remote registered in shell
 - [x] 238-term glossary with 10 categories
 - [x] Leitner spaced repetition engine
